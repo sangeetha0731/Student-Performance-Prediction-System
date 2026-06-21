@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeScope — Your Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
+    
+</head>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- ==========================================
+     NAV
+========================================== -->
+<nav>
+    <a href="/" class="nav-back">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        Home
+    </a>
+
+    <div class="nav-logo">Grade<span>Scope</span></div>
+
+    <div class="nav-steps">
+        <div class="nav-dot done"></div>
+        <div class="nav-dot active"></div>
+        <div class="nav-dot"></div>
+    </div>
+</nav>
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+<main>
+
+    <!-- Header -->
+    <div class="page-header">
+        <div class="step-badge">Step 2 of 3 — Your Details</div>
+        <h1>Academic Profile</h1>
+        <p>Ten inputs. Thirty seconds. A full prediction report.</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+
+        <!-- ======================================
+             SECTION 1 — GRADES
+        ====================================== -->
+        <div class="form-section">
+            <div class="section-head">
+                <div class="section-emoji">📊</div>
+                <span class="section-title">Period Grades</span>
+                <span class="section-hint">Scored out of 20</span>
+            </div>
+
+            <div class="two-col">
+
+                <!-- G1 -->
+                <div class="field">
+                    <div class="field-label">
+                        First Period Grade
+                        <span class="field-val" id="G1-val">100</span>
+                    </div>
+                    <div class="slider-outer">
+                        <input type="range" id="G1"
+                               min="0" max="20" value="100"
+                               oninput="syncSlider(this,'G1-val',true)">
+                    </div>
+                    <div class="slider-ticks">
+                        <span>0 — Fail</span><span>20 — Perfect</span>
+                    </div>
+                </div>
+
+                <!-- G2 -->
+                <div class="field">
+                    <div class="field-label">
+                        Second Period Grade
+                        <span class="field-val" id="G2-val">100</span>
+                    </div>
+                    <div class="slider-outer">
+                        <input type="range" id="G2"
+                               min="0" max="20" value="100"
+                               oninput="syncSlider(this,'G2-val',true)">
+                    </div>
+                    <div class="slider-ticks">
+                        <span>0 — Fail</span><span>20 — Perfect</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================================
+             SECTION 2 — STUDY HABITS
+        ====================================== -->
+        <div class="form-section">
+            <div class="section-head">
+                <div class="section-emoji">⏱️</div>
+                <span class="section-title">Study Habits</span>
+            </div>
+
+            <div class="two-col">
+
+                <!-- Study Time -->
+                <div class="field">
+                    <div class="field-label">Weekly Study Time</div>
+                    <div class="select-wrap">
+                        <select id="studytime">
+                            <option value="1">Less than 2 hours</option>
+                            <option value="2" selected>2 – 5 hours</option>
+                            <option value="3">5 – 10 hours</option>
+                            <option value="4">More than 10 hours</option>
+                        </select>
+                        <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="#7a849e" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Failures -->
+                <div class="field">
+                    <div class="field-label">Past Class Failures</div>
+                    <div class="select-wrap">
+                        <select id="failures">
+                            <option value="0" selected>None</option>
+                            <option value="1">One failure</option>
+                            <option value="2">Two failures</option>
+                            <option value="3">Three or more</option>
+                        </select>
+                        <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="#7a849e" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Absences -->
+            <div class="field" style="margin-top:22px;">
+                <div class="field-label">
+                    Total School Absences
+                    <span class="field-val" id="absences-val">
+                        0 <span style="font-size:0.72rem;font-weight:400;color:var(--text-muted)">days</span>
+                    </span>
+                </div>
+                <div class="slider-outer">
+                    <input type="range" id="absences"
+                           min="0" max="50" value="0"
+                           oninput="syncSlider(this,'absences-val',false)">
+                </div>
+                <div class="slider-ticks">
+                    <span>0 days</span>
+                    <span>25 days</span>
+                    <span>50+ days</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================
+             SECTION 3 — SUPPORT & GOALS
+        ====================================== -->
+        <div class="form-section">
+            <div class="section-head">
+                <div class="section-emoji">🎓</div>
+                <span class="section-title">Support &amp; Goals</span>
+            </div>
+
+            <div class="toggle-triple">
+
+                <div class="toggle-item">
+                    <div class="toggle-item-label">Wants Higher Education?</div>
+                    <div class="toggle-pair" id="higher-pair">
+                        <button type="button" class="toggle-btn active"
+                                onclick="setToggle('higher','yes',this)">Yes</button>
+                        <button type="button" class="toggle-btn"
+                                onclick="setToggle('higher','no',this)">No</button>
+                    </div>
+                </div>
+
+                <div class="toggle-item">
+                    <div class="toggle-item-label">Internet at Home?</div>
+                    <div class="toggle-pair" id="internet-pair">
+                        <button type="button" class="toggle-btn active"
+                                onclick="setToggle('internet','yes',this)">Yes</button>
+                        <button type="button" class="toggle-btn"
+                                onclick="setToggle('internet','no',this)">No</button>
+                    </div>
+                </div>
+
+                <div class="toggle-item">
+                    <div class="toggle-item-label">School Support?</div>
+                    <div class="toggle-pair" id="schoolsup-pair">
+                        <button type="button" class="toggle-btn"
+                                onclick="setToggle('schoolsup','yes',this)">Yes</button>
+                        <button type="button" class="toggle-btn active active-no"
+                                onclick="setToggle('schoolsup','no',this)">No</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================================
+             SECTION 4 — WELLBEING
+        ====================================== -->
+        <div class="form-section">
+            <div class="section-head">
+                <div class="section-emoji">💚</div>
+                <span class="section-title">Personal Wellbeing</span>
+            </div>
+
+            <div class="two-col">
+
+                <!-- Health -->
+                <div class="field">
+                    <div class="field-label">Health Status</div>
+                    <div class="select-wrap">
+                        <select id="health">
+                            <option value="1">1 — Very Bad</option>
+                            <option value="2">2 — Bad</option>
+                            <option value="3" selected>3 — Okay</option>
+                            <option value="4">4 — Good</option>
+                            <option value="5">5 — Excellent</option>
+                        </select>
+                        <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="#7a849e" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Family Relations -->
+                <div class="field">
+                    <div class="field-label">Family Relationship Quality</div>
+                    <div class="select-wrap">
+                        <select id="famrel">
+                            <option value="1">1 — Very Bad</option>
+                            <option value="2">2 — Bad</option>
+                            <option value="3">3 — Okay</option>
+                            <option value="4" selected>4 — Good</option>
+                            <option value="5">5 — Excellent</option>
+                        </select>
+                        <svg class="select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1l5 5 5-5" stroke="#7a849e" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ======================================
+             SUBMIT
+        ====================================== -->
+        <div class="submit-section">
+            <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+                <div class="btn-text" id="btn-text">Analyse My Profile →</div>
+                <div class="btn-spinner" id="btn-spinner"></div>
+            </button>
+            <p class="submit-note">Instant results · Your data never leaves this page</p>
+            <div class="error-bar" id="error-bar">
+                ⚠ Could not reach the server. Make sure Flask is running and try again.
+            </div>
+        </div>
+
+    </div><!-- /form-card -->
+
+</main>
+
+<!-- ==========================================
+     SCRIPT
+========================================== -->
+
+</body>
+</html>

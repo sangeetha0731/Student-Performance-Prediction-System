@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeScope — Your Results</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<div class="grid-bg"></div>
+
+<!-- ==========================================
+     NAV
+========================================== -->
+<nav>
+    <div class="nav-logo">Grade<span>Scope</span></div>
+
+    <div class="nav-actions">
+        <a href="/predict-page" class="nav-link">← Try Again</a>
+        <a href="/" class="nav-link">Home</a>
+    </div>
+
+    <div class="nav-steps">
+        <div class="nav-dot done"></div>
+        <div class="nav-dot done"></div>
+        <div class="nav-dot active"></div>
+    </div>
+</nav>
+
+<!-- ==========================================
+     PAGE
+========================================== -->
+<div class="page" id="page">
+
+    <!-- ========================================
+         HERO ROW
+    ======================================== -->
+
+    <div class="section-label" style="margin-bottom:20px; animation: fadeUp 0.4s ease both;">
+        <span class="section-label-tag">Your Prediction</span>
+        <div class="section-label-line"></div>
+    </div>
+
+    <div class="hero-row">
+
+        <!-- Gauge -->
+        <div class="gauge-card" id="gaugeCard">
+            <svg class="gauge-svg" viewBox="0 0 220 130">
+                <!-- track -->
+                <path class="gauge-track"
+                      d="M 20 110 A 90 90 0 0 1 200 110"/>
+                <!-- fill -->
+                <path class="gauge-fill" id="gaugeFill"
+                      d="M 20 110 A 90 90 0 0 1 200 110"/>
+                <!-- number -->
+                <text class="gauge-score" x="110" y="88"
+                      text-anchor="middle" id="gaugeNum">0.0</text>
+                <text class="gauge-denom" x="110" y="108"
+                      text-anchor="middle">out of 20</text>
+            </svg>
+
+            <div class="gauge-pct" id="gaugePct">0%</div>
+            <div class="gauge-sublabel">Predicted Final Score</div>
+            <div class="gauge-band" id="gaugeBand">—</div>
+        </div>
+
+        <!-- Verdict -->
+        <div class="verdict-card">
+            <div class="verdict-tag">Result Summary</div>
+            <div class="verdict-headline" id="verdictHeadline">
+                Loading your result…
+            </div>
+
+            <div class="verdict-vs" id="verdictVs">
+                <div class="vs-block">
+                    <div class="vs-num" id="vsPredicted">—</div>
+                    <div class="vs-lbl">Your Grade</div>
+                </div>
+                <div class="vs-divider"></div>
+                <div class="vs-block">
+                    <div class="vs-num" id="vsAverage">—</div>
+                    <div class="vs-lbl">Class Average</div>
+                </div>
+                <div class="vs-divider"></div>
+                <div class="vs-delta">
+                    <div class="vs-delta-num" id="vsDelta">—</div>
+                    <div class="vs-delta-lbl" id="vsDeltaLbl">vs average</div>
+                </div>
+            </div>
+
+            <div id="adviceFirstCard"></div>
+        </div>
+
+    </div>
+
+    <!-- ========================================
+         CHARTS ROW
+    ======================================== -->
+
+    <div class="section-label">
+        <span class="section-label-tag">Analytics</span>
+        <div class="section-label-line"></div>
+    </div>
+
+    <div class="charts-row">
+
+        <!-- Radar -->
+        <div class="chart-card">
+            <div class="chart-title">Your Academic Profile</div>
+            <div class="chart-subtitle">
+                Hover over any axis for the exact value. All metrics normalised to 100.
+            </div>
+            <div class="chart-wrap" style="max-height:280px;">
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Bar -->
+        <div class="chart-card">
+            <div class="chart-title">You vs Class Average</div>
+            <div class="chart-subtitle">
+                Predicted final grade compared to the dataset class average.
+            </div>
+            <div class="chart-wrap" style="max-height:280px;">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================================
+         FEATURE IMPACT
+    ======================================== -->
+
+    <div class="section-label">
+        <span class="section-label-tag">What's Helping vs Hurting</span>
+        <div class="section-label-line"></div>
+    </div>
+
+    <div class="impact-section">
+        <div class="impact-grid" id="impactGrid">
+            <!-- cards injected by JS -->
+        </div>
+    </div>
+
+    <!-- ========================================
+         ADVICE
+    ======================================== -->
+
+    <div class="section-label">
+        <span class="section-label-tag">Personalised Advice</span>
+        <div class="section-label-line"></div>
+    </div>
+
+    <div class="advice-section">
+        <div class="advice-list" id="adviceList">
+            <!-- cards injected by JS -->
+        </div>
+    </div>
+
+    <!-- ========================================
+         WHAT-IF
+    ======================================== -->
+
+    <div class="section-label">
+        <span class="section-label-tag">What-If Simulator</span>
+        <div class="section-label-line"></div>
+    </div>
+
+    <div class="whatif-section">
+        <div class="whatif-row">
+
+            <div class="chart-card">
+                <div class="chart-title">If You Studied More…</div>
+                <div class="chart-subtitle">
+                    How your predicted grade shifts across study time levels.
+                </div>
+                <div class="chart-wrap">
+                    <canvas id="studyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-title">If You Had Fewer Absences…</div>
+                <div class="chart-subtitle">
+                    Grade impact of reducing school absences.
+                </div>
+                <div class="chart-wrap">
+                    <canvas id="absenceChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================
+         CTA
+    ======================================== -->
+
+    <div class="cta-row">
+        <a href="/predict-page" class="btn-primary">
+            ↺ Predict Again
+        </a>
+        <a href="/" class="btn-ghost">← Back to Home</a>
+    </div>
+
+</div><!-- /page -->
+
+<!-- ==========================================
+     SCRIPT
+========================================== -->
+
+</body>
+</html>

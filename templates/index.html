@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradeScope — Student Performance Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<body>
+
+    <div class="grid-bg"></div>
+
+    <!-- ==========================================
+         NAV
+    ========================================== -->
+    <nav>
+        <div class="nav-logo">Grade<span>Scope</span></div>
+        <a href="/predict-page" class="nav-cta">Predict Now</a>
+    </nav>
+
+    <!-- ==========================================
+         HERO
+    ========================================== -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+
+        <div class="hero-label">Machine Learning · Student Analytics</div>
+
+        <h1 class="hero-title">
+            Predict your<br>
+            <span class="highlight">final grade</span><br>
+            <span class="line-accent">before it happens</span>
+        </h1>
+
+        <p class="hero-sub">
+            Enter a few details about your academic habits and history.
+            Our Random Forest model analyses your profile and tells you
+            where you're headed — and how to change it.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/predict-page" class="btn-primary">
+                Start Prediction
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+            </a>
+            <a href="#features" class="btn-ghost">See what we analyse ↓</a>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         STATS
+    ========================================== -->
+    <section class="stats-section">
+        <div class="stats-row reveal">
+            <div class="stat-item">
+                <div class="stat-number">5,000+</div>
+                <div class="stat-label">Student records trained on</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Key features analysed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">200</div>
+                <div class="stat-label">Decision trees in the model</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FEATURES
+    ========================================== -->
+    <section class="features-section" id="features">
+        <div class="section-header reveal">
+            <div class="section-tag">What We Analyse</div>
+            <h2 class="section-title">Every input chosen<br>for maximum accuracy</h2>
+            <p class="section-desc">
+                These 10 features were selected from 32 candidates based on
+                their statistical correlation with final grade outcomes.
+            </p>
+        </div>
+
+        <div class="features-grid reveal-stagger">
+
+            <!-- G1 -->
+            <div class="feature-card" style="--card-accent:#4f7cff; --icon-bg:rgba(79,124,255,0.1); --icon-border:rgba(79,124,255,0.2);">
+                <div class="feature-icon">📊</div>
+                <div class="feature-name">First Period Grade (G1)</div>
+                <p class="feature-desc">
+                    Your grade at the end of the first term. The single strongest
+                    early signal of where a student will finish. A high G1 sets a
+                    trajectory that is very hard to reverse.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:95%"></div>
+                    </div>
+                    <span class="impact-label">Very High Impact</span>
+                </div>
+            </div>
+
+            <!-- G2 -->
+            <div class="feature-card" style="--card-accent:#4f7cff; --icon-bg:rgba(79,124,255,0.1); --icon-border:rgba(79,124,255,0.2);">
+                <div class="feature-icon">📈</div>
+                <div class="feature-name">Second Period Grade (G2)</div>
+                <p class="feature-desc">
+                    The most predictive single feature in the model. By the second
+                    term, patterns are cemented. G2 alone explains the majority of
+                    variance in final grade outcomes.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:98%"></div>
+                    </div>
+                    <span class="impact-label">Highest Impact</span>
+                </div>
+            </div>
+
+            <!-- Study Time -->
+            <div class="feature-card" style="--card-accent:#00e5c0; --icon-bg:rgba(0,229,192,0.08); --icon-border:rgba(0,229,192,0.18);">
+                <div class="feature-icon">⏱️</div>
+                <div class="feature-name">Weekly Study Time</div>
+                <p class="feature-desc">
+                    How many hours per week a student dedicates to studying outside
+                    school. Students studying 5+ hours per week score on average
+                    2.1 points higher than those studying under 2 hours.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:62%"></div>
+                    </div>
+                    <span class="impact-label">Moderate Impact</span>
+                </div>
+            </div>
+
+            <!-- Failures -->
+            <div class="feature-card" style="--card-accent:#ff6b6b; --icon-bg:rgba(255,107,107,0.08); --icon-border:rgba(255,107,107,0.18);">
+                <div class="feature-icon">⚠️</div>
+                <div class="feature-name">Past Class Failures</div>
+                <p class="feature-desc">
+                    The number of previously failed classes is a strong negative
+                    predictor. Even a single past failure correlates with a drop
+                    of approximately 1.8 grade points in the final result.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:72%"></div>
+                    </div>
+                    <span class="impact-label">High Negative Impact</span>
+                </div>
+            </div>
+
+            <!-- Absences -->
+            <div class="feature-card" style="--card-accent:#ff6b6b; --icon-bg:rgba(255,107,107,0.08); --icon-border:rgba(255,107,107,0.18);">
+                <div class="feature-icon">🏫</div>
+                <div class="feature-name">School Absences</div>
+                <p class="feature-desc">
+                    Total number of days missed. Each additional 5 absences
+                    correlates with roughly 0.4 points lost on the final grade.
+                    Consistent attendance is one of the most actionable variables.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:58%"></div>
+                    </div>
+                    <span class="impact-label">Moderate Negative Impact</span>
+                </div>
+            </div>
+
+            <!-- Higher -->
+            <div class="feature-card" style="--card-accent:#a78bfa; --icon-bg:rgba(167,139,250,0.08); --icon-border:rgba(167,139,250,0.18);">
+                <div class="feature-icon">🎓</div>
+                <div class="feature-name">Wants Higher Education</div>
+                <p class="feature-desc">
+                    Students who aspire to pursue higher education consistently
+                    outperform peers who don't. Goal-orientation is a strong
+                    motivational proxy that the model picks up clearly.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:54%"></div>
+                    </div>
+                    <span class="impact-label">Moderate Impact</span>
+                </div>
+            </div>
+
+            <!-- Internet -->
+            <div class="feature-card" style="--card-accent:#00e5c0; --icon-bg:rgba(0,229,192,0.08); --icon-border:rgba(0,229,192,0.18);">
+                <div class="feature-icon">🌐</div>
+                <div class="feature-name">Internet at Home</div>
+                <p class="feature-desc">
+                    Access to internet at home has a measurable positive effect
+                    on academic performance, likely reflecting better access
+                    to learning resources and research tools.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:38%"></div>
+                    </div>
+                    <span class="impact-label">Mild Impact</span>
+                </div>
+            </div>
+
+            <!-- School Support -->
+            <div class="feature-card" style="--card-accent:#fbbf24; --icon-bg:rgba(251,191,36,0.08); --icon-border:rgba(251,191,36,0.18);">
+                <div class="feature-icon">🤝</div>
+                <div class="feature-name">School Support</div>
+                <p class="feature-desc">
+                    Whether the student receives extra educational support from
+                    the school. Particularly impactful for students below average —
+                    it can be the difference between passing and failing.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:42%"></div>
+                    </div>
+                    <span class="impact-label">Mild-Moderate Impact</span>
+                </div>
+            </div>
+
+            <!-- Health -->
+            <div class="feature-card" style="--card-accent:#34d399; --icon-bg:rgba(52,211,153,0.08); --icon-border:rgba(52,211,153,0.18);">
+                <div class="feature-icon">💚</div>
+                <div class="feature-name">Health Status</div>
+                <p class="feature-desc">
+                    Self-reported health on a 1–5 scale. Poor health correlates
+                    with higher absences and lower grades. Students reporting
+                    health ≥ 4 score noticeably higher on average.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:44%"></div>
+                    </div>
+                    <span class="impact-label">Mild-Moderate Impact</span>
+                </div>
+            </div>
+
+            <!-- Family Relation -->
+            <div class="feature-card" style="--card-accent:#f472b6; --icon-bg:rgba(244,114,182,0.08); --icon-border:rgba(244,114,182,0.18);">
+                <div class="feature-icon">🏠</div>
+                <div class="feature-name">Family Relationship Quality</div>
+                <p class="feature-desc">
+                    Quality of family relationships on a 1–5 scale. A stable
+                    home environment consistently supports academic performance,
+                    particularly in reducing chronic absenteeism.
+                </p>
+                <div class="feature-impact">
+                    <div class="impact-bar-track">
+                        <div class="impact-bar-fill" style="width:36%"></div>
+                    </div>
+                    <span class="impact-label">Mild Impact</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         HOW IT WORKS
+    ========================================== -->
+    <section class="how-section">
+        <div class="section-header reveal">
+            <div class="section-tag">How It Works</div>
+            <h2 class="section-title">Three steps to your result</h2>
+        </div>
+
+        <div class="steps-row reveal-stagger">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-title">Enter your details</div>
+                <p class="step-desc">Fill in 10 quick inputs about your grades, study habits, and school life. Takes under a minute.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-title">Model analyses</div>
+                <p class="step-desc">Our Random Forest model — trained on 5,000 student records — scores your profile against real outcomes.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-title">Get your report</div>
+                <p class="step-desc">Receive your predicted grade, performance analytics, feature impacts, and personalised advice.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CTA
+    ========================================== -->
+    <section class="cta-section">
+        <div class="cta-card reveal">
+            <h2>Ready to see<br>your prediction?</h2>
+            <p>It takes less than 60 seconds. No account needed.</p>
+            <a href="/predict-page" class="btn-primary">
+                Predict My Grade
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+    ========================================== -->
+    <footer>
+        <p>GradeScope — Student Performance Predictor</p>
+        <p>Built with Random Forest · Flask · Chart.js</p>
+    </footer>
+
+
+
+</body>
+</html>

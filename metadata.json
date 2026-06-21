@@ -1,0 +1,109 @@
+{
+    "tables": {
+        "table": {
+            "columns": {
+                "school": {
+                    "sdtype": "categorical"
+                },
+                "sex": {
+                    "sdtype": "categorical"
+                },
+                "age": {
+                    "sdtype": "categorical"
+                },
+                "address": {
+                    "sdtype": "categorical"
+                },
+                "famsize": {
+                    "sdtype": "categorical"
+                },
+                "Pstatus": {
+                    "sdtype": "categorical"
+                },
+                "Medu": {
+                    "sdtype": "categorical"
+                },
+                "Fedu": {
+                    "sdtype": "categorical"
+                },
+                "Mjob": {
+                    "sdtype": "categorical"
+                },
+                "Fjob": {
+                    "sdtype": "categorical"
+                },
+                "reason": {
+                    "sdtype": "categorical"
+                },
+                "guardian": {
+                    "sdtype": "categorical"
+                },
+                "traveltime": {
+                    "sdtype": "categorical"
+                },
+                "studytime": {
+                    "sdtype": "categorical"
+                },
+                "failures": {
+                    "sdtype": "categorical"
+                },
+                "schoolsup": {
+                    "sdtype": "categorical"
+                },
+                "famsup": {
+                    "sdtype": "categorical"
+                },
+                "paid": {
+                    "sdtype": "categorical"
+                },
+                "activities": {
+                    "sdtype": "categorical"
+                },
+                "nursery": {
+                    "sdtype": "categorical"
+                },
+                "higher": {
+                    "sdtype": "categorical"
+                },
+                "internet": {
+                    "sdtype": "categorical"
+                },
+                "romantic": {
+                    "sdtype": "categorical"
+                },
+                "famrel": {
+                    "sdtype": "categorical"
+                },
+                "freetime": {
+                    "sdtype": "categorical"
+                },
+                "goout": {
+                    "sdtype": "categorical"
+                },
+                "Dalc": {
+                    "sdtype": "categorical"
+                },
+                "Walc": {
+                    "sdtype": "categorical"
+                },
+                "health": {
+                    "sdtype": "categorical"
+                },
+                "absences": {
+                    "sdtype": "numerical"
+                },
+                "G1": {
+                    "sdtype": "numerical"
+                },
+                "G2": {
+                    "sdtype": "numerical"
+                },
+                "G3": {
+                    "sdtype": "numerical"
+                }
+            }
+        }
+    },
+    "relationships": [],
+    "METADATA_SPEC_VERSION": "V1"
+}
